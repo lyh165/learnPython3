@@ -82,6 +82,7 @@ print(S[:3])
 
 str = 'ABCDEFG'
 print(str[:3])
+
 print(str[::2])
 
 # 三、练习
