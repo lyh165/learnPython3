@@ -60,3 +60,66 @@ def str2int(s):
 	return reduce(lambda x,y: x * 10 + y,map(char2num,s))
 
 print('lambda匿名函数:str2int--',str2int('2223'))
+print('\n')
+
+# 练习一
+"""
+利用map()函数，把用户输入的不规范的英文名字，变为首字母大写，其他小写的规范名字。输入：['adam', 'LISA', 'barT']，输出：['Adam', 'Lisa', 'Bart']：
+"""
+
+def normalize(name):
+    str=''
+    for i,v in enumerate(name): # 遍历数组 根据每个字符的第一位去判断
+        if(i==0):
+            str+=v.upper(); # 将第一个字符转成大写
+        else:
+            str+=v.lower(); # 将 之后的字符转成小写
+    return str
+
+# 测试:
+L1 = ['adam', 'LISA', 'barT']
+L2 = list(map(normalize, L1))
+print(L2)
+print('---\n')
+# 练习二
+"""
+Python提供的sum()函数可以接受一个list并求和，请编写一个prod()函数，可以接受一个list并利用reduce()求积：
+"""
+def multi(x,y):
+    return x*y
+
+def prod(L):
+	return reduce(multi,L)
+
+print('3 * 5 * 7 * 9 =', prod([3, 5, 7, 9]))
+if prod([3, 5, 7, 9]) == 945:
+    print('测试成功!')
+else:
+    print('测试失败!')
+
+print('---\n')
+
+# 练习三
+"""
+利用map和reduce编写一个str2float函数，把字符串'123.456'转换成浮点数123.456：
+"""
+# map
+# def str2float(s):
+
+
+
+# reduce
+
+DIGITS = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4,
+          '5': 5, '6': 6, '7': 7, '8': 8, '9': 9}
+def f(x, y):
+    return x * 10 + y
+def str2int(ss):
+    return DIGITS[ss]
+def str2float(s):
+	s1 = s.split('.') # 将存进来的数 以 .进行分割 然后获取整数和小数部分
+	num1 = reduce(f, map(str2int, s1[0]))
+	num2 = reduce(f, map(str2int, s1[1]))/(10**len(s1[1])) # 10的3次方 = 1000
+	return num1 + num2
+
+print(str2float('123.222'))
